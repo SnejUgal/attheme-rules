@@ -1,0 +1,15 @@
+{
+  "name": "attheme-rules",
+  "version": "0.1.0",
+  "description": "Rules that test .attheme for possible bugs",
+  "main": "index.js",
+  "keywords": [
+    "attheme"
+  ],
+  "author": "SnejUgal <contact@snejugal.ru> (snejugal.ru)",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.18.2"
+  }
+}
