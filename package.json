@@ -9,6 +9,8 @@
   "author": "SnejUgal <contact@snejugal.ru> (snejugal.ru)",
   "license": "MIT",
   "dependencies": {
+    "attheme-default-values": "^4.8.1-0",
+    "attheme-js": "^1.1.1",
     "babel-eslint": "^8.2.2",
     "eslint": "^4.18.2"
   }
