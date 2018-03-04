@@ -3,6 +3,11 @@ const defaultValues = require(`attheme-default-values`);
 
 const rules = require(`./rules`);
 
+/**
+ * Test the theme for bugs.
+ * @param {object} userTheme The theme to test.
+ * @returns {Array} An array of warnings and errors.
+ */
 const testTheme = (userTheme) => {
   const fallbackedTheme = {
     ...new Attheme(``, defaultValues),
