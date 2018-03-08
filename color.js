@@ -29,6 +29,44 @@ class Color {
 
     return true;
   }
+
+  /**
+   * Overlays colors.
+   * @param {...object} colors Colors to overlay.
+   * @returns {object} Overlaid color.
+   */
+  static overlay (...colors) {
+    const finalColor = {
+      red: 0,
+      green: 0,
+      blue: 0,
+      alpha: 255,
+    };
+
+    colors.forEach((color) => {
+      if (color.alpha === 0) {
+        return;
+      }
+
+      if (color.alpha === 255) {
+        finalColor.red = color.red;
+        finalColor.green = color.green;
+        finalColor.blue = color.blue;
+      }
+
+      const { red, green, blue, alpha } = color;
+
+      const newRed = alpha * (red - finalColor.red) + finalColor.red;
+      const newGreen = alpha * (green - finalColor.red) + finalColor.green;
+      const newBlue = alpha * (blue - finalColor.blue) + finalColor.blue;
+
+      finalColor.red = newRed;
+      finalColor.green = newGreen;
+      finalColor.blue = newBlue;
+    });
+
+    return finalColor;
+  }
 }
 
 module.exports = Color;

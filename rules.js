@@ -28,23 +28,58 @@ module.exports = [
       alpha: 255,
     };
 
-    const purpleVariables = [];
+    const variables = [];
 
     for (const variable in theme) {
       if (Color.areEqual(theme[variable], PURPLE)) {
-        purpleVariables.push(variable);
+        variables.push(variable);
       }
     }
 
-    if (purpleVariables.length === 0) {
+    if (variables.length === 0) {
       return true;
     }
 
     return {
       type: `warning`,
       name: `purple-variables`,
-      description: ``,
-      variables: purpleVariables,
+      variables,
+    };
+  },
+
+  /**
+   * This rules tests the theme for invisible elements.
+   * @param {object} theme The theme object.
+   * @returns {boolean/object} The result of testing for this rule.
+   */
+  (theme) => {
+    const variables = [];
+
+    // Action bar
+    {
+      const finalBackground = Color.overlay(
+        theme.windowBackgroundWhite,
+        theme.actionBarDefault,
+      );
+
+      const finalIconColor = Color.overlay(
+        finalBackground,
+        theme.actionBarDefaultIcon,
+      );
+
+      if (Color.areEqual(finalBackground, finalIconColor)) {
+        variables.push(`actionBarDefaultIcon`);
+      }
+    }
+
+    if (variables.length === 0) {
+      return true;
+    }
+
+    return {
+      type: `error`,
+      name: `invisible-elements`,
+      variables,
     };
   },
 ];
