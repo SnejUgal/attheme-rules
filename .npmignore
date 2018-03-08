@@ -1,0 +1,5 @@
+tests/
+.vscode/
+debug.js
+eslint-config.yaml
+.eslintrc.yaml
