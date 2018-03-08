@@ -134,9 +134,6 @@ rules:
   no-trailing-spaces: warn
   no-underscore-dangle: warn
   no-unneeded-ternary: warn
-  object-curly-newline:
-    - warn
-    - minProperties: 2
   object-curly-spacing:
     - warn
     - always
@@ -219,11 +216,6 @@ rules:
   semi: warn
   semi-spacing: warn
   semi-style: warn
-  sort-keys:
-    - warn
-    - asc
-    - caseSensitive: false
-      natural: true
   space-before-blocks: warn
   space-before-function-paren: warn
   space-in-parens: warn
@@ -284,6 +276,7 @@ rules:
       - 1000
       - 60
       - 24
+      - 255
   no-multi-spaces: warn
   no-new-func: error
   no-new-wrappers: warn
