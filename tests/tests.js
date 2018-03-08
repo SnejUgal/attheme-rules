@@ -24,41 +24,7 @@ test(`it finds purple colors`, (t) => {
   t.deepEqual(expectedResult, testRsult);
 });
 
-test(`it reports invisible actionBarDefaultIcon (alpha === 255)`, (t) => {
-  const theme = new Attheme(
-    `actionBarDefault=#ff000000
-    actionBarDefaultIcon=#ff000000`,
-    defaultVariablesValues,
-  );
-
-  const testResult = rules[1](theme);
-  const expectedResult = {
-    type: `error`,
-    name: `invisible-elements`,
-    variables: [`actionBarDefaultIcon`],
-  };
-
-  t.deepEqual(expectedResult, testResult);
-});
-
-test(`it reports invisible actionBarDefaultIcon (alpha === 0)`, (t) => {
-  const theme = new Attheme(
-    `actionBarDefault=#ff000000
-    actionBarDefaultIcon=#00123456`,
-    defaultVariablesValues,
-  );
-
-  const testResult = rules[1](theme);
-  const expectedResult = {
-    type: `error`,
-    name: `invisible-elements`,
-    variables: [`actionBarDefaultIcon`],
-  };
-
-  t.deepEqual(expectedResult, testResult);
-});
-
-test(`it reports invisible actionBarDefaultIcon (0 < alpha < 255)`, (t) => {
+test(`it reports invisible actionBarDefaultIcon`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
     actionBarDefaultIcon=#80000000`,
@@ -75,10 +41,160 @@ test(`it reports invisible actionBarDefaultIcon (0 < alpha < 255)`, (t) => {
   t.deepEqual(expectedResult, testResult);
 });
 
-test(`it doesn't reports visible actionBarDefaultIcon`, (t) => {
+test(`it doesn't report visible actionBarDefaultIcon`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
     actionBarDefaultIcon=#80ffffff`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it reports invisible actionBarDefaultTitle`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultTitle=#80000000`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`actionBarDefaultTitle`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible actionBarDefaultTitle`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultTitle=#80ffffff`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it reports invisible actionBarDefaultSelector`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSelector=#80000000`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`actionBarDefaultSelector`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible actionBarDefaultSelector`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSelector=#80ffffff`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it reports invisible actionBarDefaultSearch`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSearch=#80000000`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`actionBarDefaultSearch`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible actionBarDefaultSearch`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSearch=#80ffffff`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it reports invisible actionBarDefaultSearchPlaceholder`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSearchPlaceholder=#80000000`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`actionBarDefaultSearchPlaceholder`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible actionBarDefaultSearchPlaceholder`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefault=#ff000000
+    actionBarDefaultSearchPlaceholder=#80ffffff`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it reports invisible actionBarDefaultSubmenuItem`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefaultSubmenuBackground=#ff000000
+    actionBarDefaultSubmenuItem=#80000000`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`actionBarDefaultSubmenuItem`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible actionBarDefaultSubmenuItem`, (t) => {
+  const theme = new Attheme(
+    `actionBarDefaultSubmenuBackground=#ff000000
+    actionBarDefaultSubmenuItem=#80ffffff`,
     defaultVariablesValues,
   );
 

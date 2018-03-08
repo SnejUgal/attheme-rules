@@ -55,20 +55,94 @@ module.exports = [
   (theme) => {
     const variables = [];
 
-    // Action bar
-    {
+    { // Action bar
       const finalBackground = Color.overlay(
         theme.windowBackgroundWhite,
         theme.actionBarDefault,
       );
 
-      const finalIconColor = Color.overlay(
-        finalBackground,
-        theme.actionBarDefaultIcon,
-      );
+      { // actionBarDefaultIcon
+        const finalIconColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultIcon,
+        );
 
-      if (Color.areEqual(finalBackground, finalIconColor)) {
-        variables.push(`actionBarDefaultIcon`);
+        if (Color.areEqual(finalBackground, finalIconColor)) {
+          variables.push(`actionBarDefaultIcon`);
+        }
+      }
+
+      { // actionBarDefaultTtitle
+        const finalTitleColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultTitle,
+        );
+
+        if (Color.areEqual(finalBackground, finalTitleColor)) {
+          variables.push(`actionBarDefaultTitle`);
+        }
+      }
+
+      { // actionBarDefaultSubtitle
+        const finalSubtitleColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultSubtitle,
+        );
+
+        if (Color.areEqual(finalBackground, finalSubtitleColor)) {
+          variables.push(`actionBarDefaultSubtitle`);
+        }
+      }
+
+      { // actionBarDefaultSelector
+        const finalSelectorColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultSelector,
+        );
+
+        if (Color.areEqual(finalBackground, finalSelectorColor)) {
+          variables.push(`actionBarDefaultSelector`);
+        }
+      }
+
+      { // actionBarDefaultSearch
+        const finalSearchTextColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultSearch,
+        );
+
+        if (Color.areEqual(finalBackground, finalSearchTextColor)) {
+          variables.push(`actionBarDefaultSearch`);
+        }
+      }
+
+      { // actionBarDefaultSearchPlaceholder
+        const finalSearchPlaceholderTextColor = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultSearchPlaceholder,
+        );
+
+        if (Color.areEqual(finalBackground, finalSearchPlaceholderTextColor)) {
+          variables.push(`actionBarDefaultSearchPlaceholder`);
+        }
+      }
+
+      { // Submenu
+        const finalSubmenuBackground = Color.overlay(
+          finalBackground,
+          theme.actionBarDefaultSubmenuBackground,
+        );
+
+        { // actionBarDefaultSubmenuItem
+          const finalItemColor = Color.overlay(
+            finalSubmenuBackground,
+            theme.actionBarDefaultSubmenuItem,
+          );
+
+          if (Color.areEqual(finalSubmenuBackground, finalItemColor)) {
+            variables.push(`actionBarDefaultSubmenuItem`);
+          }
+        }
       }
     }
 
