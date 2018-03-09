@@ -27,7 +27,7 @@ test(`it finds purple colors`, (t) => {
 test(`it reports invisible actionBarDefaultIcon`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
-    actionBarDefaultIcon=#80000000`,
+    actionBarDefaultIcon=#80101010`,
     defaultVariablesValues,
   );
 
@@ -57,7 +57,7 @@ test(`it doesn't report visible actionBarDefaultIcon`, (t) => {
 test(`it reports invisible actionBarDefaultTitle`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
-    actionBarDefaultTitle=#80000000`,
+    actionBarDefaultTitle=#80101010`,
     defaultVariablesValues,
   );
 
@@ -87,7 +87,7 @@ test(`it doesn't report visible actionBarDefaultTitle`, (t) => {
 test(`it reports invisible actionBarDefaultSelector`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
-    actionBarDefaultSelector=#80000000`,
+    actionBarDefaultSelector=#80101010`,
     defaultVariablesValues,
   );
 
@@ -117,7 +117,7 @@ test(`it doesn't report visible actionBarDefaultSelector`, (t) => {
 test(`it reports invisible actionBarDefaultSearch`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
-    actionBarDefaultSearch=#80000000`,
+    actionBarDefaultSearch=#80101010`,
     defaultVariablesValues,
   );
 
@@ -147,7 +147,7 @@ test(`it doesn't report visible actionBarDefaultSearch`, (t) => {
 test(`it reports invisible actionBarDefaultSearchPlaceholder`, (t) => {
   const theme = new Attheme(
     `actionBarDefault=#ff000000
-    actionBarDefaultSearchPlaceholder=#80000000`,
+    actionBarDefaultSearchPlaceholder=#80101010`,
     defaultVariablesValues,
   );
 
@@ -177,7 +177,7 @@ test(`it doesn't report visible actionBarDefaultSearchPlaceholder`, (t) => {
 test(`it reports invisible actionBarDefaultSubmenuItem`, (t) => {
   const theme = new Attheme(
     `actionBarDefaultSubmenuBackground=#ff000000
-    actionBarDefaultSubmenuItem=#80000000`,
+    actionBarDefaultSubmenuItem=#80101010`,
     defaultVariablesValues,
   );
 

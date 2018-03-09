@@ -4,4 +4,4 @@ global.color = require(`./color`);
 global.index = require(`./index`);
 global.rules = require(`./rules`);
 
-setInterval(() => { }, 2 ** 32 - 1);
+setInterval(() => { }, 2 ** 31 - 1);

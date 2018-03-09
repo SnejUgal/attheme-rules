@@ -11,6 +11,13 @@
 
 const Color = require(`./color`);
 
+/**
+ * This value seems to be the minimal distance between very similar colors,
+ * but it is really subjective and may need some tests.
+*/
+// eslint-disable-next-line no-magic-numbers
+const JND = Math.sqrt(3 * 10 ** 2);
+
 module.exports = [
   /**
    * @themesporterbot leaves some variables purple if it couldn't find them an
@@ -48,7 +55,7 @@ module.exports = [
   },
 
   /**
-   * This rules tests the theme for invisible elements.
+   * This rule tests the theme for invisible elements.
    * @param {object} theme The theme object.
    * @returns {boolean/object} The result of testing for this rule.
    */
@@ -67,7 +74,7 @@ module.exports = [
           theme.actionBarDefaultIcon,
         );
 
-        if (Color.areEqual(finalBackground, finalIconColor)) {
+        if (Color.areSimilar(finalBackground, finalIconColor, JND)) {
           variables.push(`actionBarDefaultIcon`);
         }
       }
@@ -78,7 +85,7 @@ module.exports = [
           theme.actionBarDefaultTitle,
         );
 
-        if (Color.areEqual(finalBackground, finalTitleColor)) {
+        if (Color.areSimilar(finalBackground, finalTitleColor, JND)) {
           variables.push(`actionBarDefaultTitle`);
         }
       }
@@ -89,7 +96,7 @@ module.exports = [
           theme.actionBarDefaultSubtitle,
         );
 
-        if (Color.areEqual(finalBackground, finalSubtitleColor)) {
+        if (Color.areSimilar(finalBackground, finalSubtitleColor, JND)) {
           variables.push(`actionBarDefaultSubtitle`);
         }
       }
@@ -100,7 +107,7 @@ module.exports = [
           theme.actionBarDefaultSelector,
         );
 
-        if (Color.areEqual(finalBackground, finalSelectorColor)) {
+        if (Color.areSimilar(finalBackground, finalSelectorColor, JND)) {
           variables.push(`actionBarDefaultSelector`);
         }
       }
@@ -111,18 +118,20 @@ module.exports = [
           theme.actionBarDefaultSearch,
         );
 
-        if (Color.areEqual(finalBackground, finalSearchTextColor)) {
+        if (Color.areSimilar(finalBackground, finalSearchTextColor, JND)) {
           variables.push(`actionBarDefaultSearch`);
         }
       }
 
       { // actionBarDefaultSearchPlaceholder
-        const finalSearchPlaceholderTextColor = Color.overlay(
+        const finalSearchPlaceholderColor = Color.overlay(
           finalBackground,
           theme.actionBarDefaultSearchPlaceholder,
         );
 
-        if (Color.areEqual(finalBackground, finalSearchPlaceholderTextColor)) {
+        if (
+          Color.areSimilar(finalBackground, finalSearchPlaceholderColor, JND)
+        ) {
           variables.push(`actionBarDefaultSearchPlaceholder`);
         }
       }
@@ -139,7 +148,7 @@ module.exports = [
             theme.actionBarDefaultSubmenuItem,
           );
 
-          if (Color.areEqual(finalSubmenuBackground, finalItemColor)) {
+          if (Color.areSimilar(finalSubmenuBackground, finalItemColor, JND)) {
             variables.push(`actionBarDefaultSubmenuItem`);
           }
         }

@@ -54,18 +54,53 @@ class Color {
         finalColor.blue = color.blue;
       }
 
-      const { red, green, blue, alpha } = color;
+      const { red, green, blue } = color;
+      const alpha = color.alpha / 255;
 
       const newRed = alpha * (red - finalColor.red) + finalColor.red;
       const newGreen = alpha * (green - finalColor.red) + finalColor.green;
       const newBlue = alpha * (blue - finalColor.blue) + finalColor.blue;
 
-      finalColor.red = newRed;
-      finalColor.green = newGreen;
-      finalColor.blue = newBlue;
+      finalColor.red = Math.round(newRed);
+      finalColor.green = Math.round(newGreen);
+      finalColor.blue = Math.round(newBlue);
     });
 
     return finalColor;
+  }
+
+  /**
+   * Calculates the distance between two colors using the Euclidean method.
+   * @param {object} firstColor The first color.
+   * @param {object} secondColor The second color.
+   * @returns {number} The distance between two colors.
+   */
+  static distance (firstColor, secondColor) {
+    const redDistance = (secondColor.red - firstColor.red) ** 2;
+    const greenDistance = (secondColor.green - firstColor.green) ** 2;
+    const blueDistance = (secondColor.blue - firstColor.blue) ** 2;
+    const sum = redDistance + greenDistance + blueDistance;
+    const sumRoot = Math.sqrt(sum);
+
+    return sumRoot;
+  }
+
+  /**
+   * Whether two colors are similar.
+   * @param {object} firstColor The first color.
+   * @param {object} secondColor The second color.
+   * @param {number} maxDistance The maximum distance between two colors within
+   * which the colors are considered similar.
+   * @returns {boolean} Wheter the passed colors are similar.
+   */
+  static areSimilar (firstColor, secondColor, maxDistance) {
+    const distance = Color.distance(firstColor, secondColor);
+
+    if (distance >= maxDistance) {
+      return false;
+    }
+
+    return true;
   }
 }
 
