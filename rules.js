@@ -117,6 +117,29 @@ module.exports = [
       checkVariables(background, elementsToCheck);
     }
 
+    { // Chats list
+      // windowBackgroundWhite can be transparent, because of this fallbacking
+      // to black
+      const background = Color.overlay(
+        theme.windowBackgroundWhite,
+      );
+
+      const elementsToCheck = [
+        `chats_message`,
+        `chats_date`,
+        `chats_nameMessage`,
+        `chats_actionMessage`,
+        `chats_attachMessage`,
+        `chats_draft`,
+        `chats_name`,
+        `chats_nameIcon`,
+        `chats_secretName`,
+        `chats_secretIcon`,
+      ];
+
+      checkVariables(background, elementsToCheck);
+    }
+
     if (variables.length === 0) {
       return true;
     }

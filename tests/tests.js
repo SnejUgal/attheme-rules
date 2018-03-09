@@ -203,3 +203,33 @@ test(`it doesn't report visible actionBarDefaultSubmenuItem`, (t) => {
 
   t.deepEqual(expectedResult, testResult);
 });
+
+test(`it reports invisible chats_message`, (t) => {
+  const theme = new Attheme(
+    `windowBackgroundWhite=#ffffffff
+    chats_message=#80f0f0f0`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = {
+    type: `error`,
+    name: `invisible-elements`,
+    variables: [`chats_message`],
+  };
+
+  t.deepEqual(expectedResult, testResult);
+});
+
+test(`it doesn't report visible chats_message`, (t) => {
+  const theme = new Attheme(
+    `windowBackgroundWhite=#ff000000
+    chats_message=#f0212121`,
+    defaultVariablesValues,
+  );
+
+  const testResult = rules[1](theme);
+  const expectedResult = true;
+
+  t.deepEqual(expectedResult, testResult);
+});
