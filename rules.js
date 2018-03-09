@@ -11,12 +11,35 @@
 
 const Color = require(`./color`);
 
-/**
- * This value seems to be the minimal distance between very similar colors,
- * but it is really subjective and may need some tests.
-*/
+// This value seems to be the minimal distance between very similar colors,
+// but it is really subjective and may need some tests.
 // eslint-disable-next-line no-magic-numbers
 const JND = Math.sqrt(3 * 10 ** 2);
+
+/**
+ * Checks passed elements for similarity and pushes failed ones in the passed
+ * array.
+ * @param {object} theme The theme object.
+ * @param {string[]} variables An array the function will push failed variables
+ * in.
+ * @param {number} distance The maximum distance between background and element
+ * colors.
+ * @param {object} background The background color.
+ * @param {string[]} elements An array with variables to check.
+ * @returns {void}
+ */
+const checkSimilarity = (theme, variables, distance, background, elements) => {
+  elements.forEach((element) => {
+    const elementColor = Color.overlay(
+      background,
+      theme[element],
+    );
+
+    if (Color.areSimilar(background, elementColor, distance)) {
+      variables.push(element);
+    }
+  });
+};
 
 module.exports = [
   /**
@@ -62,97 +85,36 @@ module.exports = [
   (theme) => {
     const variables = [];
 
+    const checkVariables = checkSimilarity.bind(this, theme, variables, JND);
+
     { // Action bar
-      const finalBackground = Color.overlay(
+      const background = Color.overlay(
         theme.windowBackgroundWhite,
         theme.actionBarDefault,
       );
 
-      { // actionBarDefaultIcon
-        const finalIconColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultIcon,
-        );
+      const elementsToCheck = [
+        `actionBarDefaultIcon`,
+        `actionBarDefaultTitle`,
+        `actionBarDefaultSubtitle`,
+        `actionBarDefaultSearch`,
+        `actionBarDefaultSearchPlaceholder`,
+        `actionBarDefaultSelector`,
+      ];
 
-        if (Color.areSimilar(finalBackground, finalIconColor, JND)) {
-          variables.push(`actionBarDefaultIcon`);
-        }
-      }
+      checkVariables(background, elementsToCheck);
+    }
 
-      { // actionBarDefaultTtitle
-        const finalTitleColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultTitle,
-        );
+    { // Submenu
+      const background = Color.overlay(
+        theme.windowBackgroundWhite,
+        theme.actionBarDefault,
+        theme.actionBarDefaultSubmenuBackground,
+      );
 
-        if (Color.areSimilar(finalBackground, finalTitleColor, JND)) {
-          variables.push(`actionBarDefaultTitle`);
-        }
-      }
+      const elementsToCheck = [`actionBarDefaultSubmenuItem`];
 
-      { // actionBarDefaultSubtitle
-        const finalSubtitleColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultSubtitle,
-        );
-
-        if (Color.areSimilar(finalBackground, finalSubtitleColor, JND)) {
-          variables.push(`actionBarDefaultSubtitle`);
-        }
-      }
-
-      { // actionBarDefaultSelector
-        const finalSelectorColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultSelector,
-        );
-
-        if (Color.areSimilar(finalBackground, finalSelectorColor, JND)) {
-          variables.push(`actionBarDefaultSelector`);
-        }
-      }
-
-      { // actionBarDefaultSearch
-        const finalSearchTextColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultSearch,
-        );
-
-        if (Color.areSimilar(finalBackground, finalSearchTextColor, JND)) {
-          variables.push(`actionBarDefaultSearch`);
-        }
-      }
-
-      { // actionBarDefaultSearchPlaceholder
-        const finalSearchPlaceholderColor = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultSearchPlaceholder,
-        );
-
-        if (
-          Color.areSimilar(finalBackground, finalSearchPlaceholderColor, JND)
-        ) {
-          variables.push(`actionBarDefaultSearchPlaceholder`);
-        }
-      }
-
-      { // Submenu
-        const finalSubmenuBackground = Color.overlay(
-          finalBackground,
-          theme.actionBarDefaultSubmenuBackground,
-        );
-
-        { // actionBarDefaultSubmenuItem
-          const finalItemColor = Color.overlay(
-            finalSubmenuBackground,
-            theme.actionBarDefaultSubmenuItem,
-          );
-
-          if (Color.areSimilar(finalSubmenuBackground, finalItemColor, JND)) {
-            variables.push(`actionBarDefaultSubmenuItem`);
-          }
-        }
-      }
+      checkVariables(background, elementsToCheck);
     }
 
     if (variables.length === 0) {
